@@ -9,6 +9,6 @@ import {User} from '../user/user';
 })
 export class Tasks {
 
-  name = input.required<string>();
+  name = input<string>();
 
 }
