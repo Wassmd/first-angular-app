@@ -1,5 +1,10 @@
 import {Component, computed, Input, input, output} from '@angular/core';
 
+interface Auser {
+  id: string;
+  name: string;
+  avatar: string;
+}
 @Component({
   selector: 'app-user',
   imports: [],
@@ -7,11 +12,7 @@ import {Component, computed, Input, input, output} from '@angular/core';
   styleUrl: './user.css'
 })
 export class User {
-  @Input({ required: true }) user!: {
-    id: string;
-    name: string;
-    avatar: string;
-  };
+  @Input({ required: true }) user!: Auser;
 
   imagePath = computed(() => 'assets/users/' + this.user.avatar);
   select = output<string>();
