@@ -14,7 +14,7 @@ import {Tasks } from './tasks/tasks';
 export class App {
   users = DUMMY_USERS;
   protected readonly title = signal('first-angular-app');
-  id:string = 'u1'
+  id?:string;
 
   get getSelectedUser() {
     return  this.users.find(user => user.id === this.id)
