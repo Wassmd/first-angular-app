@@ -1,5 +1,9 @@
 @if (isNewTask) {
-  <app-new-task (close)="closeNewTaskCalled()"/>
+  <app-new-task
+    (close)="closeNewTaskCalled()"
+    [userId]="userId()"
+    (addTaskEmitter)="onTaskAdded($event)"
+  />
 }
 <section id="tasks">
   <header>
@@ -13,7 +17,7 @@
       <li>
         <app-task
           [task]="task"
-          (complete)= "onCompleteTask($event)"
+          (complete)="onCompleteTask($event)"
         />
       </li>
     </ul>

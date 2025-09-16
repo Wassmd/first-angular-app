@@ -31,4 +31,8 @@ export class Tasks {
   closeNewTaskCalled() {
     this.isNewTask = false;
   }
+
+  onTaskAdded(task: Atask) {
+    this.tasks = [...this.tasks, task];
+  }
 }
