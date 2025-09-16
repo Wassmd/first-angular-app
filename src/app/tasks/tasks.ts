@@ -27,4 +27,8 @@ export class Tasks {
   onStartAddNewTask() {
     this.isNewTask = true;
   }
+
+  closeNewTaskCalled() {
+    this.isNewTask = false;
+  }
 }
