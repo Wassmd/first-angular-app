@@ -1,8 +1,8 @@
-import {Component, EventEmitter, input, Output} from '@angular/core';
+import {Component, EventEmitter, inject, input, Output} from '@angular/core';
 import {Task} from './task/task';
-import {DUMMY_TASKS} from '../dummy-tasks';
 import {Atask} from './task/task.model';
 import {NewTask} from './new-task/new-task';
+import {TasksService} from './tasks.service';
 
 @Component({
   selector: 'app-tasks',
@@ -11,17 +11,18 @@ import {NewTask} from './new-task/new-task';
   styleUrl: './tasks.css'
 })
 export class Tasks {
+  taskService = inject(TasksService)
   name = input<string>();
   userId = input<string>();
-  tasks = DUMMY_TASKS;
+
   isNewTask = false;
 
   get filteredTasks() {
-    return this.tasks.filter(task => task.userId === this.userId());
+    return this.taskService.getTasks(this.userId()!);
   }
 
   onCompleteTask(taskId: string) {
-    this.tasks = this.tasks.filter(task => task.id !== taskId);
+    this.taskService.deleteTask(taskId)
   }
 
   onStartAddNewTask() {
@@ -33,6 +34,6 @@ export class Tasks {
   }
 
   onTaskAdded(task: Atask) {
-    this.tasks = [...this.tasks, task];
+    this.taskService.addTask(task);
   }
 }
