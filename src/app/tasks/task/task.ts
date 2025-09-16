@@ -1,12 +1,6 @@
-import {Component, Input, input} from '@angular/core';
+import {Component, EventEmitter, Input, input, Output} from '@angular/core';
+import { Atask } from './task.model';
 
-interface Atask {
-  id: string;
-  userId: string;
-  title: string;
-  summary: string;
-  dueDate: string;
-}
 @Component({
   selector: 'app-task',
   imports: [],
@@ -14,7 +8,10 @@ interface Atask {
   styleUrl: './task.css'
 })
 export class Task {
-
   @Input({ required: true }) task!: Atask;
+  @Output() complete = new EventEmitter();
 
+  onCompleteTask() {
+    this.complete.emit(this.task.id);
+  }
 }

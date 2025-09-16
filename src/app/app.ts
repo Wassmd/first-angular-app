@@ -7,19 +7,19 @@ import {Tasks } from './tasks/tasks';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, Header, User, Tasks],
+  imports: [Header, User, Tasks],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
 export class App {
   users = DUMMY_USERS;
   protected readonly title = signal('first-angular-app');
-  id?:string;
+  selectedUserId?:string;
 
   get getSelectedUser() {
-    return  this.users.find(user => user.id === this.id)
+    return  this.users.find(user => user.id === this.selectedUserId)
   }
   onSelectedUser(id: string) {
-    this.id = id
+    this.selectedUserId = id
   }
 }
